@@ -1,7 +1,10 @@
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from robots.models import Robot
 
+def index(request):
+    return render(request, 'index.html')
 
 def get_all_robots(request):
     if request.method == "GET":
