@@ -4,10 +4,10 @@ from django.core.exceptions import ValidationError
 
 
 class Robot(models.Model):
-    serial = models.CharField(max_length=5, blank=False, null=False)
-    model = models.CharField(max_length=2, blank=False, null=False)
-    version = models.CharField(max_length=2, blank=False, null=False)
-    created = models.DateTimeField(blank=False, null=False)
+    serial = models.CharField(max_length=5, blank=False, null=False, default='default_model')
+    model = models.CharField(max_length=2, blank=False, null=False, default='default_model')
+    version = models.CharField(max_length=2, blank=False, null=False, default='default_version')
+    created = models.DateTimeField(blank=False, null=False, default=datetime.now)
 
     def save(self, *args, **kwargs):
         validate_robot_data({
