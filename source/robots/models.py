@@ -42,3 +42,13 @@ def validate_robot_data(data):
 
     if datetime.strptime(data["created"], "%Y-%m-%d %H:%M:%S") > datetime.now():
         raise ValidationError("Поле 'created' не может быть в будущем времени.")
+
+
+
+class RobotProduction(models.Model):
+    robot = models.ForeignKey(Robot, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    produced_at = models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.robot.model} {self.robot.version} - {self.quantity} шт."
